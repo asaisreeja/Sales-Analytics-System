@@ -12,156 +12,121 @@ A Python system that reads, cleans, validates, and analyzes sales transaction da
 
 ## Module 3 – Python Programming Assignment
 
-### 📌 Project Overview
+Project Overview
 
-The **Sales Analytics System** is a Python-based data preprocessing and validation application developed for an e-commerce use case.
-It reads raw and messy sales transaction data, handles encoding issues, cleans malformed values, validates business rules, and produces a reliable dataset for further analysis and reporting.
+The Sales Analytics System is a comprehensive Python application developed for an e-commerce scenario. It manages the full data lifecycle: from reading "messy" raw files and cleaning malformed records to enriching data via external APIs and generating professional business intelligence reports.
 
-This project demonstrates core Python skills including file handling, data cleaning, exception handling, and structured programming.
+This project demonstrates proficiency in:
 
----
+File handling and data cleaning
 
-## 📂 Repository Structure
+API integration and data enrichment
 
-```
+Business logic implementation and analytics
+
+Automated report generation
+
+Repository Structure
 Sales-Analytics-System/
-│
-├── main.py                     # Application entry point
+├── main.py                     # Application entry point & controller
 ├── README.md                   # Project documentation
-├── requirements.txt            # Dependencies
-│
-├── utils/
-│   └── file_handler.py         # File reading, parsing, validation logic
+├── requirements.txt            # Project dependencies (requests)
 │
 ├── data/
-│   └── sales_data.txt          # Provided sales dataset
+│   ├── sales_data.txt          # Raw pipe-delimited dataset
+│   └── enriched_sales_data.txt # Output: Data enriched with API details
 │
-└── output/                     # Generated outputs (future use)
-```
+├── utils/
+│   ├── file_handler.py         # Q1 & Q2: File I/O and Data Cleaning
+│   ├── data_processor.py       # Q3 & Q5: Analytics logic & Report generation
+│   └── api_handler.py          # Q4: DummyJSON API integration
+│
+└── output/
+    └── sales_report.txt        # Final Business Intelligence Report
 
----
+ Features Implemented
+1. Robust File Handling & Cleaning (Q1 & Q2)
 
-## 🎯 Assignment Objectives
+Supports multiple encodings: UTF-8, Latin-1, CP1252.
 
-The system is designed to:
+Cleans numeric formatting (removes commas from prices and product names).
 
-1. Read sales data files with potential encoding issues
-2. Clean and preprocess raw transaction records
-3. Validate data using predefined business rules
-4. Filter invalid transactions
-5. Prepare clean data for analytics and reporting
+Filters invalid records based on business rules (e.g., negative prices, non-standard IDs).
 
----
+2. Advanced Sales Analytics (Q3)
 
-## ⚙️ Features Implemented (Question 2)
+Financial Metrics: Automated calculation of Total Revenue and Average Order Value.
 
-### 1. Robust File Handling
+Regional Analysis: Percentage contribution and transaction counts per region.
 
-* Reads pipe (`|`) delimited sales data files
-* Automatically handles non-UTF-8 encodings (`utf-8`, `latin-1`, `cp1252`)
-* Skips header row and empty lines
-* Gracefully handles file and encoding errors
+Product Insights: Identifies Top 5 selling products and low-performing inventory.
 
----
+Customer Behavior: Tracks top spenders and unique product purchase history.
 
-### 2. Data Parsing & Cleaning
+3. API Integration & Data Enrichment (Q4)
 
-* Splits records using the pipe (`|`) delimiter
-* Removes commas from product names (e.g., `Mouse,Wireless`)
-* Cleans numeric fields by removing formatting commas (e.g., `1,500 → 1500`)
-* Converts:
+External Connectivity: Integrates with DummyJSON API to fetch global product data.
 
-  * `Quantity` → integer
-  * `UnitPrice` → float
-* Skips malformed rows with incorrect field counts
+Data Mapping: Extracts numeric IDs (e.g., P101 → 101) to link local sales to API categories.
 
----
+Enrichment: Adds Category, Brand, and Rating metadata to sales records.
 
-### 3. Data Validation & Filtering
+Fault Tolerance: Graceful handling of connection timeouts or API errors.
 
-Transactions are validated using the following rules:
+4. Professional Report Generation (Q5)
 
-* Quantity must be greater than zero
-* Unit price must be greater than zero
-* TransactionID must start with `T`
-* ProductID must start with `P`
-* CustomerID must start with `C`
-* CustomerID and Region must not be empty
+Automated Export: Generates structured text reports in the output/ folder.
 
-The system also:
+Trend Visualization: Includes daily revenue trends and API enrichment success rates.
 
-* Displays available regions before filtering
-* Displays transaction amount range (min and max)
-* Provides a detailed validation summary
-
----
-
-## 📊 Sample Execution Output
-
-```
+ Sample Execution Output
+Reading sales data file...
 Total raw records read: 80
-Total parsed records: 80
-
-Available Regions: {'North', 'South', 'East', 'West'}
-Transaction Amount Range: -8982.0 - 818960.0
-
+Parsing and cleaning data...
 Validation Summary:
-total_input: 80
-invalid: 10
-filtered_by_region: 0
-filtered_by_amount: 0
-final_count: 70
-```
+total_input: 80 | invalid: 10 | final_count: 70
 
----
+Connecting to DummyJSON API...
+Successfully fetched products from API.
+Enriched data saved to data/enriched_sales_data.txt
 
-## ▶️ How to Run the Project
+Finalizing system and generating report...
+Comprehensive report generated: output/sales_report.txt
 
-### Prerequisites
+ How to Run the Project
+Prerequisites
 
-* Python 3.8 or higher
+Python 3.8 or higher
 
-### Steps
+Steps
 
-1. Clone the repository:
+Clone the repository:
 
-   ```bash
-   git clone https://github.com/asaisreeja/Sales-Analytics-System.git
-   ```
+git clone https://github.com/asaisreeja/Sales-Analytics-System.git
+cd Sales-Analytics-System
 
-2. Navigate to the project directory:
 
-   ```bash
-   cd Sales-Analytics-System
-   ```
+Install dependencies:
 
-3. Run the application:
+pip install -r requirements.txt
 
-   ```bash
-   python main.py
-   ```
 
----
+Run the application:
 
-## 🧰 Technologies Used
+python main.py
 
-* Python (Core Python)
-* File I/O operations
-* Data structures (lists, dictionaries)
-* Exception handling
+Technologies Used
 
----
+Python (Core): File I/O, Lists/Dictionaries, List Comprehensions
 
-## 📝 Notes
+Requests: For external API communication
 
-* No external libraries are required for Question 2
-* The project is structured for easy extension (API integration, analytics, reporting)
-* Further modules will build upon the cleaned and validated dataset
+OS & Datetime: Directory management and report timestamping
 
----
+Author
 
-## 👩‍💻 Author
+Asaisreeja
+GitHub: https://github.com/asaisreeja
 
-**Asaisreeja**
-GitHub: [https://github.com/asaisreeja](https://github.com/asaisreeja)
+
 
